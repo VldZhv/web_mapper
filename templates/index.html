@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>RG Tags Mapper — Web</title>
+    <link rel="stylesheet" href="/static/style.css" />
+  </head>
+  <body>
+    <header>
+      <h1>RG Tags Mapper (Web)</h1>
+      <div class="inline">
+        <input id="projectName" placeholder="Название проекта" />
+        <input id="projectDescription" placeholder="Описание" />
+        <button id="createProjectBtn">Создать проект</button>
+        <select id="projectSelect"></select>
+        <button id="loadProjectBtn">Открыть</button>
+      </div>
+    </header>
+
+    <main>
+      <aside>
+        <h2>Инструменты</h2>
+        <div class="panel">
+          <label>Загрузить план (PNG/JPG/BMP): <input type="file" id="planFile" accept=".png,.jpg,.jpeg,.bmp" /></label>
+          <button id="uploadPlanBtn">Загрузить план</button>
+        </div>
+
+        <div class="panel">
+          <h3>Режим рисования</h3>
+          <div class="inline wrap">
+            <button data-mode="none">Курсор</button>
+            <button data-mode="room">Зал</button>
+            <button data-mode="zone">Зона</button>
+            <button data-mode="track">Трек</button>
+            <button data-mode="calibration">Калибровка</button>
+          </div>
+          <p id="modeInfo">Текущий режим: курсор</p>
+          <button id="finishPolygonBtn">Завершить многоугольник</button>
+        </div>
+
+        <div class="panel">
+          <h3>Параметры объекта</h3>
+          <input id="entityName" placeholder="Название зала/зоны/трека" />
+          <label>Цвет зоны: <input id="zoneColor" type="color" value="#4caf50" /></label>
+          <label>Дистанция калибровки (м): <input id="distanceMeters" type="number" min="0.1" step="0.1" value="10" /></label>
+          <label>Шаг сетки (м): <input id="gridStep" type="number" min="0.1" step="0.1" value="5" /></label>
+        </div>
+
+        <div class="panel">
+          <h3>Добавление трека</h3>
+          <input id="trackFile" type="file" accept=".mp3" />
+          <label>Громкость: <input id="trackVolume" type="number" min="0" max="100" value="100" /></label>
+          <label><input type="checkbox" id="trackAutostart" /> Автозапуск</label>
+          <label><input type="checkbox" id="trackLooped" /> Зациклить</label>
+        </div>
+
+        <div class="panel">
+          <button id="exportBtn">Экспорт JSON</button>
+        </div>
+
+        <pre id="log"></pre>
+      </aside>
+
+      <section class="canvas-wrap">
+        <canvas id="canvas" width="1200" height="800"></canvas>
+      </section>
+    </main>
+
+    <script src="/static/app.js"></script>
+  </body>
+</html>
